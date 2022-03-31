@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HKK NEWS | {{order_by}}</title>
+        <link rel="stylesheet" href="https://unpkg.com/mvp.css" >
+    </head>
+    <body>
+        <header>
+            <h1>HKK News</h1>
+            <div>Order by:
+              {% if order_by == 'new' %}
+                <a href="/?order_by=popular">Popular</a>
+                |
+                <strong>New</strong>
+              {% elif order_by == 'popular' %}
+                <strong>Popular</strong>
+                |
+                <a href="/?order_by=new">New</a>
+              {% else: %}
+                <strong>Popular</strong>
+                |
+                <a href="/?order_by=new">New</a>
+              {% endif %}
+            </div>
+        </header>
+        <main>
+            {% for data in dict_data %}
+              <div>
+                <div>
+                  <a href="/{{data.objectID}}"><h3>{{data.title}}</h3></a>(<a href="{{data.url}}" target="_blank">{{data.url}}</a>)
+                </div>
+                <div>{{data.points}} points | By:{{data.author}} | {{data.num_comments}} comments</div>
+              </div>
+              <hr>
+            {% endfor %}
+        </main>
+    </body>
+</html>

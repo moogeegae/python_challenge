@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HKK NEWS | comments</title>
+        <link rel="stylesheet" href="https://unpkg.com/mvp.css" >
+    </head>
+    <body>
+        <header>
+          <h1>{{head_data.title}}</h1>
+          <div>{{head_data.points}} points | By:{{head_data.author}} | <a href="{{head_data.url}}" target="_blank">{{head_data.url}}</a></div>
+        </header>
+        <main>          
+          {% for data in dict_data %}
+            {% if data.author == None %}
+            <div>
+              <p></p>
+              [deleted]
+              <p></p>
+            </div>
+            <hr>
+            {% else %}
+            <div>
+              <strong>{{data.author}}</strong>
+              <p></p>
+              {{data.text|safe}}
+              <p></p>
+            </div>
+            <hr>
+            {% endif %}
+          {% endfor %}
+        </main>
+    </body>
+</html>
